@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ("is_active", "is_admin")
+        fields = ["name", "email", "password", "gender", "age", "introduction"]
 
     def create(self, validated_data):
         user = super().create(validated_data)
@@ -15,12 +15,6 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-
-
-class UserDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("name", "email",)
 
     def update(self, instance, validated_data):
         user = super().update(instance, validated_data)

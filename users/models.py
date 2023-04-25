@@ -31,15 +31,15 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    name = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    name = models.CharField(max_length=10, unique=True)
     gender_choices = (
         ('M', 'Male'),
         ('F', 'Female'),
     )
     gender = models.CharField(
-        max_length=1, choices=gender_choices, null=True, blank=True)
-    age = models.IntegerField(null=True, blank=True)
-    introduction = models.TextField(null=True, blank=True)
+        max_length=1, choices=gender_choices)
+    age = models.IntegerField()
+    introduction = models.TextField()
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
